@@ -17,6 +17,7 @@ const Tasks = ({ dispatch, tasks }) => {
   const [taskData, setTaskData] = useState(initData);
   const [edit, setEdit] = useState(false);
   const [sort, setSort] = useState(true);
+  const [arr, setArr] = useToggle(false);
 
   useEffect(() => {
     dispatch(setTasks());
@@ -31,8 +32,11 @@ const Tasks = ({ dispatch, tasks }) => {
   const handleSort = () => {
     dispatch(sortTask(sort));
     setSort(false);
+    setArr();
   };
 
+  const uarr = <span>&uarr;</span>;
+  const darr = <span>&darr;</span>;
   return (
     <React.Fragment>
       <BtnsBox>
@@ -45,7 +49,7 @@ const Tasks = ({ dispatch, tasks }) => {
           edit={edit}
           setEdit={setEdit}
         />
-        <Btn onClick={handleSort}>Sort Tasks</Btn>
+        <Btn onClick={handleSort}>Sort Tasks {arr ? darr : uarr}</Btn>
       </BtnsBox>
       <TaskList tasks={tasks} handleEdit={handleEdit} />
     </React.Fragment>

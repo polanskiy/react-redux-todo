@@ -9,7 +9,7 @@ const taskReducer = (state = initState, action) => {
     case SET_TASKS:
       const localTasks = localStorage.getItem('taskList');
       let newState = state;
-      if (localTasks.indexOf('title') !== -1) {
+      if (localTasks && localTasks.indexOf('title') !== -1) {
         newState = JSON.parse(localTasks);
       }
       return newState;
