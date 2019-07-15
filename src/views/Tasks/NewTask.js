@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import {
   NewTaskBox, Btn, NewTaskInputs, NewTaskLabel, Input, LabelText,
 } from '../../styles/Task';
 import Modal from '../Modal';
-import useToggle from '../../hooks/useToggle';
-import { addTask } from '../../store/actions/tasks';
+import { addTask, editTask } from '../../store/actions/tasks';
 import pseudoid from '../../utils/pseudoId';
 
-const NewTask = ({ dispatch }) => {
-  const initData = {
-    id: '',
-    title: '',
-    description: '',
-    complete: false,
-  };
-  const [isOpen, toggleOpen] = useToggle(false);
-  const [taskData, setTaskData] = useState(initData);
+const NewTask = ({
+  dispatch, taskData, setTaskData, toggleOpen, isOpen, initData, edit, setEdit,
+}) => {
+  console.log('taskData', taskData);
   const { title, description } = taskData;
+
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -33,10 +28,25 @@ const NewTask = ({ dispatch }) => {
     }
   };
 
+  const updateTask = () => {
+    if (title.trim()) {
+      dispatch(editTask(taskData));
+      toggleOpen();
+      setTaskData(initData);
+      setEdit(false);
+    }
+  };
+
+  const handleClose = () => {
+    toggleOpen();
+    setTaskData(initData);
+    setEdit(false);
+  };
+
   return (
     <NewTaskBox>
       <Btn onClick={() => toggleOpen()}>New Task</Btn>
-      <Modal title="New Task" isOpen={isOpen} handleClose={toggleOpen}>
+      <Modal title={edit ? 'Edit Task' : 'New Task'} isOpen={isOpen} handleClose={handleClose}>
         <NewTaskInputs>
           <NewTaskLabel required>
             <LabelText>Task Title:</LabelText>
@@ -47,7 +57,7 @@ const NewTask = ({ dispatch }) => {
             <Input type="text" name="description" value={description} onChange={handleInput} />
           </NewTaskLabel>
         </NewTaskInputs>
-        <Btn onClick={createTask}>Add Task</Btn>
+        <Btn onClick={edit ? updateTask : createTask}>{edit ? 'Save Changes' : 'Add Task'}</Btn>
       </Modal>
     </NewTaskBox>
   );

@@ -53,18 +53,24 @@ export const TaskItemBox = styled.div`
 
 export const TaskItemTitle = styled.h3`
   margin: 0 0 10px;
-  text-decoration: ${props => (props.complete ? 'line-through' : 'none')}
+  text-decoration: ${props => (props.complete ? 'line-through' : 'none')};
 `;
 
 export const TaskItemDescription = styled.p`
   margin: 0 0 20px;
 `;
 
-export const TaskItemComplete = styled.button`
-  background: ${c.btnBg};
+export const TaskItemBtns = styled.div`
+  display: flex;
+  
+`;
+
+export const TaskItemBtn = styled.button`
+  background: ${props => c[props.color] || c.btnBg};
   border: 1px solid ${c.baseColor};
   cursor: pointer;
   padding: 10px;
   width: max-content;
   color: ${c.white};
+  margin: 0 10px 0 0;
 `;

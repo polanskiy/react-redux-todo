@@ -18,7 +18,16 @@ const taskReducer = (state = initState, action) => {
       localStorage.setItem('taskList', JSON.stringify(newTaskState));
       return newTaskState;
     case EDIT_TASK:
-      return [...state];
+      const editTaskList = state.map((task) => {
+        if (task.id === action.task.id) {
+          task.title = action.task.title;
+          task.description = action.task.description;
+          return task;
+        }
+        return task;
+      });
+      localStorage.setItem('taskList', JSON.stringify(editTaskList));
+      return [...editTaskList];
     case COMPLETE_TASK:
       const completeTaskList = state.map((task) => {
         if (task.id === action.id) {
