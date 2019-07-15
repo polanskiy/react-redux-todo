@@ -4,6 +4,7 @@ import NewTask from './NewTask';
 import TaskList from './TaskList';
 import { setTasks, sortTask } from '../../store/actions/tasks';
 import useToggle from '../../hooks/useToggle';
+import { Btn, BtnsBox } from '../../styles/Task';
 
 const Tasks = ({ dispatch, tasks }) => {
   const initData = {
@@ -34,16 +35,18 @@ const Tasks = ({ dispatch, tasks }) => {
 
   return (
     <React.Fragment>
-      <NewTask
-        toggleOpen={toggleOpen}
-        isOpen={isOpen}
-        taskData={taskData}
-        setTaskData={setTaskData}
-        initData={initData}
-        edit={edit}
-        setEdit={setEdit}
-      />
-      <button onClick={handleSort}>Sort Tasks</button>
+      <BtnsBox>
+        <NewTask
+          toggleOpen={toggleOpen}
+          isOpen={isOpen}
+          taskData={taskData}
+          setTaskData={setTaskData}
+          initData={initData}
+          edit={edit}
+          setEdit={setEdit}
+        />
+        <Btn onClick={handleSort}>Sort Tasks</Btn>
+      </BtnsBox>
       <TaskList tasks={tasks} handleEdit={handleEdit} />
     </React.Fragment>
   );

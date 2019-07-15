@@ -79,3 +79,11 @@ export const TaskItemBtn = styled.button`
   color: ${c.white};
   margin: 0 10px 0 0;
 `;
+
+
+export const BtnsBox = styled.div`
+  display: flex;
+  button{
+    margin: 0 10px 0 0;
+  }
+`;
