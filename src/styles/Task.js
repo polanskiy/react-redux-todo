@@ -18,9 +18,17 @@ export const NewTaskInputs = styled.div`
 `;
 
 export const NewTaskLabel = styled.label`
+position: relative;
   display: flex;
   flex-direction: column;
   margin: 0 0 20px;
+  &:after{
+    position: absolute;
+    content: ${props => (props.required ? '"required field"' : '')};
+    right: 20px;
+    top: 55%;
+    color: ${c.danger}
+  }
 `;
 
 export const Input = styled.input`
