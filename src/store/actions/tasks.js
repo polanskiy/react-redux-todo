@@ -14,8 +14,9 @@ export const editTask = task => ({
   task,
 });
 
-export const completeTask = () => ({
+export const completeTask = id => ({
   type: COMPLETE_TASK,
+  id,
 });
 
 

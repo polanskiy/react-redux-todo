@@ -15,12 +15,20 @@ const taskReducer = (state = initState, action) => {
       return [...newState];
     case ADD_TASK:
       const newTaskState = [...state, action.task];
-      localStorage.setItem('taskList', newTaskState);
+      localStorage.setItem('taskList', JSON.stringify(newTaskState));
       return newTaskState;
     case EDIT_TASK:
       return [...state];
     case COMPLETE_TASK:
-      return [...state];
+      const completeTaskList = state.map((task) => {
+        if (task.id === action.id) {
+          task.complete = !task.complete;
+          return task;
+        }
+        return task;
+      });
+      localStorage.setItem('taskList', JSON.stringify(completeTaskList));
+      return [...completeTaskList];
     case SORT_TASK:
       return [...state];
     case REMOVE_TASK:

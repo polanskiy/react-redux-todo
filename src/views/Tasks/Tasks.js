@@ -8,7 +8,7 @@ const Tasks = ({ dispatch, tasks }) => {
   useEffect(() => {
     dispatch(setTasks());
   }, [dispatch]);
-  console.log('tasks', tasks);
+
   return (
     <React.Fragment>
       <NewTask />
