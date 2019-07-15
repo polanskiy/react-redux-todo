@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TaskItem from './TaskItem';
-import { completeTask } from '../../store/actions/tasks';
+import { TaskListBox } from '../../styles/Task';
+import { completeTask, removeTask } from '../../store/actions/tasks';
 
 const TaskList = ({ tasks, dispatch, handleEdit }) => {
   const handleComplete = (id) => {
@@ -9,7 +10,7 @@ const TaskList = ({ tasks, dispatch, handleEdit }) => {
   };
 
   const handleRemove = (id) => {
-
+    dispatch(removeTask(id));
   };
 
   const renderTasks = () => (tasks.length ? tasks.map(task => (
@@ -24,7 +25,7 @@ const TaskList = ({ tasks, dispatch, handleEdit }) => {
     : <div>no tasks</div>);
 
   return (
-    <div>{renderTasks()}</div>
+    <TaskListBox>{renderTasks()}</TaskListBox>
   );
 };
 

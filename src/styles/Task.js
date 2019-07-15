@@ -40,6 +40,11 @@ export const LabelText = styled.span`
   margin: 0 0 10px;
 `;
 
+export const TaskListBox = styled.div`
+  background: ${c.white};
+  padding: 20px;
+
+`;
 
 export const TaskItemBox = styled.div`
   display: flex;

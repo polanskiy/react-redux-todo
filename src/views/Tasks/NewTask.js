@@ -10,9 +10,7 @@ import pseudoid from '../../utils/pseudoId';
 const NewTask = ({
   dispatch, taskData, setTaskData, toggleOpen, isOpen, initData, edit, setEdit,
 }) => {
-  console.log('taskData', taskData);
   const { title, description } = taskData;
-
 
   const handleInput = (e) => {
     const { name, value } = e.target;
