@@ -16,4 +16,5 @@ export const MainBox = styled.div`
 export const ContentBox = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 20px;
 `;
