@@ -10,6 +10,7 @@ export const Btn = styled.button`
   border: 1px solid ${c.baseColor};
   padding: 10px;
   cursor: pointer;
+  color: ${c.white};
 `;
 
 export const NewTaskInputs = styled.div`
