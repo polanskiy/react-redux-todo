@@ -43,6 +43,11 @@ const taskReducer = (state = initState, action) => {
       return completeTaskList;
 
     case SORT_TASK:
+      if (action.sort) {
+        state.sort((a, b) => ((a.title > b.title) ? 1 : -1));
+      } else {
+        state.reverse();
+      }
       return [...state];
 
     case REMOVE_TASK:

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import NewTask from './NewTask';
 import TaskList from './TaskList';
-import { setTasks } from '../../store/actions/tasks';
+import { setTasks, sortTask } from '../../store/actions/tasks';
 import useToggle from '../../hooks/useToggle';
-
 
 const Tasks = ({ dispatch, tasks }) => {
   const initData = {
@@ -16,6 +15,7 @@ const Tasks = ({ dispatch, tasks }) => {
   const [isOpen, toggleOpen] = useToggle(false);
   const [taskData, setTaskData] = useState(initData);
   const [edit, setEdit] = useState(false);
+  const [sort, setSort] = useState(true);
 
   useEffect(() => {
     dispatch(setTasks());
@@ -25,6 +25,11 @@ const Tasks = ({ dispatch, tasks }) => {
     toggleOpen();
     setTaskData(task);
     setEdit(true);
+  };
+
+  const handleSort = () => {
+    dispatch(sortTask(sort));
+    setSort(false);
   };
 
   return (
@@ -38,6 +43,7 @@ const Tasks = ({ dispatch, tasks }) => {
         edit={edit}
         setEdit={setEdit}
       />
+      <button onClick={handleSort}>Sort Tasks</button>
       <TaskList tasks={tasks} handleEdit={handleEdit} />
     </React.Fragment>
   );

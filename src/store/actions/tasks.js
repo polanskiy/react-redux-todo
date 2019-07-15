@@ -20,8 +20,9 @@ export const completeTask = id => ({
 });
 
 
-export const sortTask = () => ({
+export const sortTask = sort => ({
   type: SORT_TASK,
+  sort,
 });
 
 export const removeTask = id => ({
